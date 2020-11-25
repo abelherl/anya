@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="44px" height="33px" viewBox="0 0 44 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Shape</title>
+    <defs>
+        <linearGradient x1="50%" y1="98.818735%" x2="50%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#7044E9" offset="0%"></stop>
+            <stop stop-color="#8281DE" offset="100%"></stop>
+        </linearGradient>
+        <path d="M38.3333333,31 C39.2533333,31 40,31.7466667 40,32.6666667 C40,33.5757143 39.2710053,34.315531 38.3661158,34.3330168 L38.3333333,34.3333333 L1.66666667,34.3333333 C0.746666667,34.3333333 0,33.5866667 0,32.6666667 C0,31.757619 0.728994709,31.0178023 1.63388419,31.0003165 L1.66666667,31 L38.3333333,31 Z M20,6 C25.9733333,6 30.8333333,10.86 30.8333333,16.8333333 C30.8333333,18.8954229 30.2430237,20.8863518 29.1731282,22.589452 L29.1241667,22.6666667 L38.3333333,22.6666667 C39.2533333,22.6666667 40,23.4133333 40,24.3333333 C40,25.242381 39.2710053,25.9821977 38.3661158,25.9996835 L38.3333333,26 L25.2666667,26 C24.54,26 23.8975,25.5283333 23.6775,24.8358333 C23.4575,24.1433333 23.7133333,23.3875 24.3075,22.97 C26.3066667,21.5641667 27.5,19.27 27.5,16.8333333 C27.5,12.6983333 24.135,9.33333333 20,9.33333333 C15.865,9.33333333 12.5,12.6983333 12.5,16.8333333 C12.5,19.2456333 13.669586,21.5182691 15.6327671,22.9283678 L15.6925,22.9708333 C16.2866667,23.3883333 16.5416667,24.1441667 16.3225,24.8366667 C16.1069861,25.517625 15.4813266,25.984244 14.7695956,25.9996088 L14.7333333,26 L1.66666667,26 C0.746666667,26 3.55271368e-15,25.2533333 3.55271368e-15,24.3333333 C3.55271368e-15,23.4242857 0.728994709,22.684469 1.63388419,22.6669832 L1.66666667,22.6666667 L10.8758333,22.6666667 C9.775,20.9466667 9.16666667,18.9266667 9.16666667,16.8333333 C9.16666667,10.86 14.0266667,6 20,6 Z" id="path-2"></path>
+        <filter x="-8.8%" y="-8.8%" width="117.5%" height="124.7%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="9P-024---horoscope" transform="translate(-209.000000, -419.000000)">
+            <g id="item" transform="translate(195.000000, 398.000000)">
+                <g id="Shape" transform="translate(16.000000, 16.000000)">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                    <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

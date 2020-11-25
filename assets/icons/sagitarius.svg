@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="44px" height="44px" viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Path</title>
+    <defs>
+        <linearGradient x1="50%" y1="98.818735%" x2="50%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#7044E9" offset="0%"></stop>
+            <stop stop-color="#8281DE" offset="100%"></stop>
+        </linearGradient>
+        <path d="M37.4743794,3.87706409 C37.352714,3.18707168 36.81272,2.64707762 36.1227276,2.52541229 L21.9562168,0.0254397976 C21.0503934,-0.133725118 20.1854029,0.470434902 20.0254047,1.37709159 C19.8654064,2.28374829 20.4703998,3.14790544 21.3770565,3.30790368 L32.3919353,5.25121564 L13.7496404,23.8935105 L6.17805703,16.3219272 C5.52806418,15.671101 4.47140914,15.671101 3.82141629,16.3219272 C3.17059012,16.9727533 3.17059012,18.0277417 3.82141629,18.6785679 L11.3929997,26.2501513 L0.48811963,37.1550313 C-0.162706543,37.8058575 -0.162706543,38.8608459 0.48811963,39.511672 C0.813116054,39.8375018 1.23977803,40 1.66644,40 C2.09310197,40 2.51976394,39.8375018 2.84476037,39.511672 L13.7496404,28.606792 L20.4878996,35.3450512 C20.812896,35.670881 21.239558,35.8333792 21.66622,35.8333792 C22.0928819,35.8333792 22.5195439,35.670881 22.8445403,35.3450512 C23.4953665,34.694225 23.4953665,33.6392366 22.8445403,32.9884105 L16.1062811,26.2501513 L34.7477427,7.6086897 L36.6910547,18.6235685 C36.8343864,19.431893 37.5368787,20.00022 38.3310366,20.00022 C38.4268689,20.00022 38.5243678,19.9918868 38.6227001,19.974387 C39.5293568,19.8143887 40.1343501,18.9502316 39.9743519,18.0435749 L37.4743794,3.87706409 Z" id="path-2"></path>
+        <filter x="-8.7%" y="-6.2%" width="117.5%" height="117.5%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="9P-024---horoscope" transform="translate(-34.000000, -551.000000)">
+            <g id="item" transform="translate(20.000000, 536.000000)">
+                <g id="Path" transform="translate(16.000000, 16.000000)">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                    <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

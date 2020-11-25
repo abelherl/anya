@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="43px" height="44px" viewBox="0 0 43 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Shape</title>
+    <defs>
+        <linearGradient x1="50%" y1="98.818735%" x2="50%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#7044E9" offset="0%"></stop>
+            <stop stop-color="#8281DE" offset="100%"></stop>
+        </linearGradient>
+        <path d="M25.155,25.8166667 C26.1991667,28.0516667 28.2683333,29.5316667 30.6891667,29.775 C30.9525,29.8016667 31.22,29.815 31.49,29.815 C35.8141667,29.815 39.3333333,26.3258333 39.3333333,22.0375 C39.3333333,21.1175 38.5866667,20.3708333 37.6666667,20.3708333 C36.7466667,20.3708333 36,21.1175 36,22.0375 C36,24.4883333 33.9766667,26.4816667 31.49,26.4816667 C31.3333333,26.4816667 31.1791667,26.4741667 31.025,26.4583333 C29.7633333,26.3316667 28.725,25.5841667 28.175,24.4066667 C27.575,23.1241667 27.69,21.6633333 28.48,20.4991667 C30.9333333,16.8866667 32.1266667,14.0583333 32.1266667,11.8533333 C32.1275,5.31666667 26.7616667,-3.55271368e-15 20.1666667,-3.55271368e-15 C13.5716667,-3.55271368e-15 8.20583333,5.31666667 8.20583333,11.8516667 C8.20583333,14.4183333 9.79,17.5916667 11.6183333,20.4058333 C11.3808333,20.3891667 11.1433333,20.37 10.9016667,20.37 C5.4425,20.37 1,24.7733333 1,30.185 C1,35.5966667 5.4425,40 10.9025,40 C16.3625,40 20.8041667,35.5966667 20.8041667,30.185 C20.8041667,27.4091667 19.6308333,24.9041667 17.7558333,23.1175 C13.9216667,18.455 11.54,14.1391667 11.54,11.8516667 C11.5391667,7.15416667 15.41,3.33333333 20.1666667,3.33333333 C24.9233333,3.33333333 28.7941667,7.15416667 28.7941667,11.8516667 C28.7941667,12.8791667 28.2608333,14.8891667 25.7233333,18.625 C24.2875,20.7391667 24.07,23.495 25.155,25.8166667 L25.155,25.8166667 Z M10.9025,36.6666667 C7.28,36.6666667 4.33333333,33.7591667 4.33333333,30.185 C4.33333333,26.6108333 7.28,23.7033333 10.9025,23.7033333 C14.5241667,23.7033333 17.4708333,26.6108333 17.4708333,30.185 C17.4708333,33.7591667 14.5241667,36.6666667 10.9025,36.6666667 Z" id="path-2"></path>
+        <filter x="-9.1%" y="-6.2%" width="118.3%" height="117.5%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <filter x="-10.4%" y="-7.5%" width="120.9%" height="120.0%" filterUnits="objectBoundingBox" id="filter-4">
+            <feGaussianBlur stdDeviation="1.5" in="SourceAlpha" result="shadowBlurInner1"></feGaussianBlur>
+            <feOffset dx="-1" dy="1" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 0.3 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="9P-024---horoscope" transform="translate(-35.000000, -413.000000)">
+            <g id="item" transform="translate(20.000000, 398.000000)">
+                <g id="Shape" transform="translate(16.000000, 16.000000)">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                    <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                    <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-2"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
