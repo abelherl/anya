@@ -1,3 +1,5 @@
+
+
 import 'package:anya/presentation/core/constant_styling.dart';
 import 'package:flutter/material.dart';
 
@@ -60,7 +62,7 @@ ThemeData mainTheme() {
       ),
       button: base.subtitle2.copyWith(
         fontFamily: fontFamily,
-        fontWeight: FontWeight.w700,
+        fontWeight: FontWeight.w500,
         color: Colors.white,
       ),
       caption: base.caption.copyWith(

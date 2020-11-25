@@ -1,7 +1,7 @@
+import 'package:anya/domain/entity/session.dart';
+import 'package:anya/domain/entity/user_session.dart';
+import 'package:anya/shared/clean_code/failure.dart';
 import 'package:dartz/dartz.dart';
-import 'package:glovory_mart/domain/entity/session.dart';
-import 'package:glovory_mart/domain/entity/user_session.dart';
-import 'package:glovory_mart/shared/clean_code/failure.dart';
 
 abstract class RemoteSessionRepository{
   /// get access token from by send device id to server
