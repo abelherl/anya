@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icons/cup/full</title>
+    <defs>
+        <filter id="filter-1">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.447059 0 0 0 0 0.305882 0 0 0 0 0.905882 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="9P-024---drink-level" transform="translate(-331.000000, -622.000000)">
+            <g id="Group" transform="translate(20.000000, 561.000000)">
+                <g id="icon/cup-full" transform="translate(311.000000, 61.000000)" filter="url(#filter-1)">
+                    <g>
+                        <rect id="bound" fill="#FFFFFF" opacity="0" x="0" y="0" width="24" height="24"></rect>
+                        <path d="M17.8960938,5.75403517 L16.57375,5.75403517 L16.57375,4 L2,4 L2,14.3214747 C2,17.4526286 4.55421875,20 7.69378906,20 L10.88,20 C14.0195703,20 16.5737891,17.4526286 16.5737891,14.3214747 L16.5737891,13.9398443 L17.8961328,13.9398443 C20.1590234,13.9398443 22.0000391,12.1037641 22.0000391,9.84690079 C22.0000391,7.59011544 20.1589844,5.75403517 17.8960938,5.75403517 Z M17.8960938,11.6023774 L16.57375,11.6023774 L16.57375,8.09150209 L17.8960938,8.09150209 C18.8666406,8.09150209 19.65625,8.87899469 19.65625,9.8469787 C19.65625,10.8149238 18.8666406,11.6023774 17.8960938,11.6023774 Z" id="cup" fill="#8F9BB3"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

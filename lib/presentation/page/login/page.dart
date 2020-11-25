@@ -1,4 +1,6 @@
 import 'package:anya/helper/ui_helper.dart';
+import 'package:anya/presentation/config/route_config.dart';
+import 'package:anya/presentation/core/app.dart';
 import 'package:anya/presentation/core/constant_styling.dart';
 import 'package:anya/presentation/page/login/widget.dart';
 import 'package:division/division.dart';
@@ -29,11 +31,12 @@ class _LoginPageState extends State<LoginPage> {
           child: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
             child: Container(
-              height: MediaQuery.of(context).size.height - 60,
+              height: 700,
               child: Center(
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 25),
                   child: Container(
+                    height: 700,
                     width: 400,
                     child: Form(
                       key: _formKey,
@@ -49,11 +52,13 @@ class _LoginPageState extends State<LoginPage> {
                           LoginButton(
                             title: 'Login with Google',
                             assetPath: 'assets/icons/google.svg',
+                            onPressed: () {},
                           ),
                           SizedBox(height: 20),
                           LoginButton(
                             title: 'Login with Facebook',
                             assetPath: 'assets/icons/facebook.svg',
+                            onPressed: () {},
                           ),
                           Stack(
                             children: [
@@ -93,6 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                             title: "Login",
                             color: Theme.of(context).primaryColor,
                             textColor: Colors.white,
+                            onPressed: () => App.main.router.navigate(RouteName.zodiac),
                           ),
                           Spacer(),
                         ],

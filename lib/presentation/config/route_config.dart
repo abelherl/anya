@@ -6,6 +6,8 @@ class RouteName {
   // General routes
   static const String splash = '/';
   static const String login = '/login';
+  static const String water = '/water';
+  static const String zodiac = '/zodiac';
 }
 
 class RouteConfig {

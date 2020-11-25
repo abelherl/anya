@@ -10,8 +10,10 @@ class LoginButton extends StatefulWidget {
     this.assetPath,
     this.color = Colors.white,
     this.textColor = aDarkTextColor,
+    @required this.onPressed,
   });
 
+  Function onPressed;
   String assetPath;
   String title;
   Color color;
@@ -28,7 +30,8 @@ class _LoginButtonState extends State<LoginButton> {
   Widget build(BuildContext context) {
     return Parent(
       gesture: Gestures()
-        ..isTap((tap) => setState(() => pressed = tap)),
+        ..isTap((tap) => setState(() => pressed = tap))
+        ..onTap(() => widget.onPressed()),
       style: ParentStyle()
         ..ripple(true, highlightColor: Theme.of(context).primaryColor)
         ..borderRadius(all: 8)
@@ -75,7 +78,7 @@ class LoginTextField extends StatefulWidget {
 }
 
 class _LoginTextFieldState extends State<LoginTextField> {
-  bool obscure = false;
+  bool obscure = true;
 
   @override
   Widget build(BuildContext context) {
