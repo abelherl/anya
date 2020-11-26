@@ -68,7 +68,7 @@ class _WaterPageState extends State<WaterPage> {
                                   valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).accentColor),
                                   center: Parent(
                                     style: ParentStyle()
-                                      ..linearGradient(colors: [Theme.of(context).primaryColor.withAlpha((_cupPerDay/15*255).toInt()), Colors.white.withAlpha(1)], begin: Alignment.bottomCenter, end: Alignment.topCenter,),
+                                      ..linearGradient(colors: [Theme.of(context).primaryColor.withAlpha((_cupPerDay/15*255).toInt()), Theme.of(context).accentColor.withAlpha((_cupPerDay/15*255).toInt()), Colors.white.withAlpha(1)], begin: Alignment.bottomCenter, end: Alignment.topCenter,),
                                     child: Column(
                                       children: [
                                         SizedBox(height: 80),
@@ -124,11 +124,11 @@ class _WaterPageState extends State<WaterPage> {
                           title: "Next",
                           color: Theme.of(context).primaryColor,
                           textColor: Colors.white,
-                          onPressed: () {},
+                          onPressed: () => App.main.router.navigate(RouteName.listen),
                         ),
                         SizedBox(height: 15),
                         FlatButton(
-                          onPressed: () {},
+                          onPressed: () => App.main.router.navigate(RouteName.listen),
                           splashColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           child: Text(

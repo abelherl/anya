@@ -68,18 +68,18 @@ class LoginTextField extends StatefulWidget {
   LoginTextField({
     @required this.controller,
     @required this.hintText,
+    this.obscure = false,
   });
 
   TextEditingController controller;
   String hintText;
+  bool obscure;
 
   @override
   _LoginTextFieldState createState() => _LoginTextFieldState();
 }
 
 class _LoginTextFieldState extends State<LoginTextField> {
-  bool obscure = true;
-
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -92,7 +92,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
         FilteringTextInputFormatter.deny(RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")),
       ],
       style: Theme.of(context).textTheme.bodyText1,
-      obscureText: obscure,
+      obscureText: widget.obscure,
       obscuringCharacter: '•',
       decoration: InputDecoration(
         counterText: '',
@@ -102,10 +102,10 @@ class _LoginTextFieldState extends State<LoginTextField> {
         suffixIcon: widget.hintText.toLowerCase().contains("password") ? IconButton(
             icon: Icon(
               Icons.remove_red_eye_outlined,
-              color: !obscure ? Theme.of(context).primaryColor : aLightTextColor,
+              color: !widget.obscure ? Theme.of(context).primaryColor : aLightTextColor,
             ),
             splashColor: Colors.transparent,
-            onPressed: () => setState(() => obscure = !obscure),
+            onPressed: () => setState(() => widget.obscure = !widget.obscure),
           ) : null,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),

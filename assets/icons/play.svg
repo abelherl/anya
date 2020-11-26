@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Triangle</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="9P-024---sound-expanded" transform="translate(-180.000000, -753.000000)" fill="#FFFFFF">
+            <g id="info-bar" transform="translate(0.000000, 272.000000)">
+                <g id="player" transform="translate(20.000000, 428.000000)">
+                    <g id="button-play" transform="translate(140.000000, 36.000000)">
+                        <path d="M33.7888544,19.5777088 L42.5527864,37.1055728 C43.0467649,38.0935298 42.6463162,39.2948759 41.6583592,39.7888544 C41.3806483,39.9277098 41.0744222,40 40.763932,40 L23.236068,40 C22.1314985,40 21.236068,39.1045695 21.236068,38 C21.236068,37.6895098 21.3083582,37.3832837 21.4472136,37.1055728 L30.2111456,19.5777088 C30.7051241,18.5897518 31.9064702,18.1893031 32.8944272,18.6832816 C33.281482,18.876809 33.595327,19.190654 33.7888544,19.5777088 Z" id="Triangle" transform="translate(32.000000, 28.000000) rotate(-270.000000) translate(-32.000000, -28.000000) "></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

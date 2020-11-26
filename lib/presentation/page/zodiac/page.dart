@@ -11,7 +11,7 @@ class ZodiacPage extends StatefulWidget {
 }
 
 class _ZodiacPageState extends State<ZodiacPage> {
-  List<String> zodiacs = [
+  List<String> _zodiacs = [
     'Aries',
     'Taurus',
     'Gemini',
@@ -26,7 +26,7 @@ class _ZodiacPageState extends State<ZodiacPage> {
     'Pisces',
   ];
 
-  String picked = 'Libra';
+  String _selectedZodiac = 'Libra';
 
   @override
   Widget build(BuildContext context) {
@@ -73,10 +73,10 @@ class _ZodiacPageState extends State<ZodiacPage> {
                           crossAxisCount: (MediaQuery.of(context).size.width > 500) ? 4 : 3,
                           childAspectRatio: 0.75,
                         ),
-                        children: zodiacs.map((e) => ZodiacButton(
+                        children: _zodiacs.map((e) => ZodiacButton(
                           e,
-                          (e == picked),
-                          (chosen) => setState(() => picked = chosen),
+                          (e == _selectedZodiac),
+                          (chosen) => setState(() => _selectedZodiac = chosen),
                         )).toList(),
                       ),
                       SizedBox(height: 40),

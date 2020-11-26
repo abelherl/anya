@@ -8,6 +8,14 @@ class RouteName {
   static const String login = '/login';
   static const String water = '/water';
   static const String zodiac = '/zodiac';
+  static const String listen = '/listen';
+  static const String types = '/types';
+  static const String settings = '/settings';
+  static const String editProfile = '/editProfile';
+  static const String changePassword = '/changePassword';
+  static const String preferences = '/listen';
+  static const String about = '/about';
+  static const String contact = '/contact';
 }
 
 class RouteConfig {

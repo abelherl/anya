@@ -92,6 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                           LoginTextField(
                             controller: _userPasswordController,
                             hintText: 'Password',
+                            obscure: true,
                           ),
                           SizedBox(height: 20),
                           LoginButton(
