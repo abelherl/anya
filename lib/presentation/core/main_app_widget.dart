@@ -20,7 +20,7 @@ class _MainAppState extends State<MainApp> {
           child: child,
         );
       },
-      title: 'Glovory Mart',
+      title: 'Anya',
       theme: mainTheme(),
       home: SplashPage(),
       navigatorKey: App.main.router.navigatorKey,

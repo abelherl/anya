@@ -25,19 +25,29 @@ class _ListenPageState extends State<ListenPage> with TickerProviderStateMixin {
   bool _animate = true;
   final _player = AssetsAudioPlayer();
 
-  void changeType(bool increase) {
-    setState(() {
-      if (increase) {
-        _selectedType = (_selectedType == types.length - 1) ? 0 : _selectedType + 1;
-      }
-      else {
-        _selectedType = (_selectedType == 0) ? types.length - 1 : _selectedType - 1;
-      }
-      _animate = false;
-    });
+  void _changeType([bool increase, int toIndex]) {
+    if (increase != null) {
+      setState(() {
+        if (increase) {
+          _selectedType =
+              (_selectedType == types.length - 1) ? 0 : _selectedType + 1;
+        } else {
+          _selectedType =
+              (_selectedType == 0) ? types.length - 1 : _selectedType - 1;
+        }
+        _animate = false;
+      });
+    }
+    else {
+      setState(() {
+        _animate = false;
+        _selectedType = toIndex;
+      });
+    }
+
     _player.playlistPlayAtIndex(_selectedType);
     if (_paused) {
-      Future.delayed(Duration(milliseconds: 500), () {
+      Future.delayed(Duration(milliseconds: 100), () {
         _player.pause();
       });
     }
@@ -57,8 +67,16 @@ class _ListenPageState extends State<ListenPage> with TickerProviderStateMixin {
     _player.play();
   }
 
+  void _popUp() async {
+    final result = await Navigator.push(context, CustomPageRoute(TypesPage()));
+    if (result['selected'] != null) {
+      _changeType(null, result['selected']);
+    }
+  }
+
   @override
   void initState() {
+    _player.setVolume(5);
     _player.open(
       Playlist(
         audios: [
@@ -91,15 +109,15 @@ class _ListenPageState extends State<ListenPage> with TickerProviderStateMixin {
       body: GestureDetector(
         onHorizontalDragEnd: (dragUpdateDetails) {
           if (dragUpdateDetails.primaryVelocity < -500) {
-            changeType(true);
+            _changeType(true);
           }
           if (dragUpdateDetails.primaryVelocity > 500) {
-            changeType(false);
+            _changeType(false);
           }
         },
         onVerticalDragEnd: (dragUpdateDetails) {
           if (dragUpdateDetails.primaryVelocity < -500) {
-            Navigator.push(context, CustomPageRoute(TypesPage()));
+            _popUp();
           }
         },
         child: Parent(
@@ -135,7 +153,7 @@ class _ListenPageState extends State<ListenPage> with TickerProviderStateMixin {
                               ..boxShadow(color: Colors.black12, spread: -3, blur: 10, offset: Offset(0, 3)),
                             child: LinearGradientMask(
                               child: SvgPicture.asset(
-                                'assets/icons/aquarius.svg',
+                                'assets/icons/leo.svg',
                                 color: Colors.white,
                                 width: 36,
                               ),

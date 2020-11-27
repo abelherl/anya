@@ -1,4 +1,5 @@
 import 'package:anya/data/datasource/data_dummy.dart';
+import 'package:anya/presentation/core/app.dart';
 import 'package:anya/presentation/core/constant_styling.dart';
 import 'package:division/division.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,7 +22,9 @@ class _TypesItemState extends State<TypesItem> {
       children: [
         SizedBox(height: widget.index == 0 ? 0 : 32),
         GestureDetector(
-          onTap: () {},
+          onTap: () => App.main.router.pop({
+            'selected': widget.index
+          }),
           child: Row(
             children: [
               Parent(
