@@ -25,26 +25,26 @@ class UserRepositoryImpl extends UserRepository {
     List<UserModel> users = List();
     users.add(
       UserModel(
-        nik: "111111222222",
+        email: "111111222222",
         name: "Dummy-1",
         image: "",
-        pin: "000000",
+        password: "000000",
       ),
     );
     users.add(
       UserModel(
-        nik: "333333444444",
+        email: "333333444444",
         name: "Dummy-2",
         image: "https://petapixel.com/assets/uploads/2019/02/download-3-800x800.jpeg",
-        pin: "111111",
+        password: "111111",
       ),
     );
     users.add(
       UserModel(
-        nik: "555555666666",
+        email: "555555666666",
         name: "Dummy-3",
         image: "https://petapixel.com/assets/uploads/2019/02/download-3-800x800.jpeg",
-        pin: "222222",
+        password: "222222",
       ),
     );
 

@@ -37,10 +37,10 @@ class LocalSessionRepositoryImpl extends LocalSessionRepository {
             accessToken: accessToken,
           ),
           user: User(
-            nik: "333333444444",
+            email: "333333444444",
             name: "Dummy-1",
             image: "",
-            pin: "111222",
+            password: "111222",
           ),
         ),
       );
@@ -50,7 +50,7 @@ class LocalSessionRepositoryImpl extends LocalSessionRepository {
 
     UserModel userModel = UserModel.fromJson(json.decode(sp.get(userKey)));
 
-    print('UserModel: ${userModel}');
+    print('UserModel: ${userModel.horoscope}');
     return Right(
       UserSession(
         session: Session(
@@ -65,13 +65,7 @@ class LocalSessionRepositoryImpl extends LocalSessionRepository {
   Future<Either<Failure, bool>> save(String accessToken, User user) async {
     SharedPreferences sp = await SharedPreferences.getInstance();
     sp.setString(accessTokenKey, accessToken);
-    sp.setString(userKey, json.encode(UserModel(id: user.id, uid: user.uid, nik: user.nik, name: user.name, image: user.image, pin: user.pin, search: user.search,).toJson()));
-
-    sp.setInt(searchHistory +"_size", user.search.length);
-    for(int i=0;i<user.search.length;i++)
-      sp.setString(searchHistory + "_" + '$i', user.search[i]);
-
-    print('userKey: ${sp.getString(userKey)}');
+    sp.setString(userKey, json.encode(UserModel(id: user.id, email: user.email, password: user.password, name: user.name, image: user.image, waterConsumption: user.waterConsumption, theme: user.theme, gender: user.gender, playingTime: user.playingTime, horoscope: user.horoscope, defaultMode: user.defaultMode,).toJson()));
 
     return Right(true);
   }

@@ -16,8 +16,8 @@ class RemoteSessionRepositoryImpl extends RemoteSessionRepository {
   /// Send create session request by submitting device id
   @override
   Future<Either<Failure, UserSession>> create(
-    String nik,
-    String pin,
+    String email,
+    String password,
   ) async {
     //Create dummy data
     String dummyToken = "asldflaksdjf-asdflaksdjf-asldkfjalsdf";
@@ -25,7 +25,7 @@ class RemoteSessionRepositoryImpl extends RemoteSessionRepository {
     final result = await UserRemoteDataSourceImpl().getUsers();
     List<User> _users = [];
     User _user;
-    String _wrong = 'nik';
+    String _wrong = 'email';
 
     result.fold(
       (failure) {},
@@ -46,8 +46,8 @@ class RemoteSessionRepositoryImpl extends RemoteSessionRepository {
     }
     else {
       _users.forEach((element) {
-        if (nik == element.nik) {
-          if (pin == element.pin) {
+        if (email == element.email) {
+          if (password == element.password) {
             _user = element;
           } else {
             _wrong = 'pin';

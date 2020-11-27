@@ -1,4 +1,6 @@
 import 'package:anya/data/datasource/data_dummy.dart';
+import 'package:anya/domain/entity/user.dart';
+import 'package:anya/presentation/bloc/session_bloc.dart';
 import 'package:anya/presentation/config/route_config.dart';
 import 'package:anya/presentation/core/app.dart';
 import 'package:anya/presentation/core/constant_styling.dart';
@@ -8,6 +10,7 @@ import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:division/division.dart';
 import 'package:draggable_bottom_sheet/draggable_bottom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
@@ -21,9 +24,13 @@ class ListenPage extends StatefulWidget {
 class _ListenPageState extends State<ListenPage> with TickerProviderStateMixin {
   int _selectedType = 0;
   bool _paused = false;
-  double _y = -20;
+  double _y = 0;
   bool _animate = true;
+  User _user = User(horoscope: 'aquarius');
+  Color _bg = Colors.black;
   final _player = AssetsAudioPlayer();
+
+  SessionBloc _sessionBloc;
 
   void _changeType([bool increase, int toIndex]) {
     if (increase != null) {
@@ -75,26 +82,48 @@ class _ListenPageState extends State<ListenPage> with TickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    _player.dispose();
+    super.dispose();
+  }
+
+  @override
   void initState() {
+    _sessionBloc = BlocProvider.of<SessionBloc>(context);
+    _sessionBloc.loadLocal();
+
+    print("TYPES: $types");
+
     _player.setVolume(5);
     _player.open(
       Playlist(
-        audios: [
-          Audio('assets/audios/${types[0].toLowerCase()}.mp3'),
-          Audio('assets/audios/${types[1].toLowerCase()}.mp3'),
-          Audio('assets/audios/${types[2].toLowerCase()}.mp3'),
-          Audio('assets/audios/${types[3].toLowerCase()}.mp3'),
-          Audio('assets/audios/${types[4].toLowerCase()}.mp3'),
-        ],
+        audios: types.map((e) =>
+            Audio("/assets/audios/${e.toLowerCase()}.mp3",
+              metas: Metas(
+                title:  e,
+                artist: 'Anya',
+                album: 'Playlist',
+                image: MetasImage.asset("assets/icons/app-icon.png"),
+              ),
+            ),
+        ).toList(),
       ),
+      notificationSettings: NotificationSettings(
+        seekBarEnabled: false,
+        nextEnabled: false,
+        prevEnabled: false,
+      ),
+      showNotification: true,
     );
 
-    _play();
+    Future.delayed(Duration(seconds: 1), () => _play());
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    bool _dark = false;
     String _formattedDate = DateFormat('EEEE, d MMM yyyy').format(DateTime.now());
     String _formattedTime = DateFormat('HH:mm').format(DateTime.now());
 
@@ -105,171 +134,182 @@ class _ListenPageState extends State<ListenPage> with TickerProviderStateMixin {
     })) : null;
     print("Y2: $_y $_animate");
 
-    return Scaffold(
-      body: GestureDetector(
-        onHorizontalDragEnd: (dragUpdateDetails) {
-          if (dragUpdateDetails.primaryVelocity < -500) {
-            _changeType(true);
-          }
-          if (dragUpdateDetails.primaryVelocity > 500) {
-            _changeType(false);
-          }
-        },
-        onVerticalDragEnd: (dragUpdateDetails) {
-          if (dragUpdateDetails.primaryVelocity < -500) {
-            _popUp();
-          }
-        },
-        child: Parent(
-          style: ParentStyle()
-            ..linearGradient(
-              colors: gradients[_selectedType],
-              begin: Alignment.bottomLeft,
-              end: Alignment.topRight,
-            )
-            ..animate(700, Curves.easeOutCirc),
-          child: SafeArea(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25),
-              child: Column(
-                children: [
-                  SizedBox(height: 25),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      GestureDetector(
-                        child: SvgPicture.asset('assets/icons/settings.svg', color: Colors.transparent, width: 30,),
-                        onTap: () {},
-                      ),
-                      Expanded(
-                        child: Center(
-                          child: Parent(
-                            style: ParentStyle()
-                              ..width(60)
-                              ..height(60)
-                              ..padding(all: 12)
-                              ..background.color(Colors.white)
-                              ..borderRadius(all: 30)
-                              ..boxShadow(color: Colors.black12, spread: -3, blur: 10, offset: Offset(0, 3)),
-                            child: LinearGradientMask(
-                              child: SvgPicture.asset(
-                                'assets/icons/leo.svg',
-                                color: Colors.white,
-                                width: 36,
+    return MultiBlocListener(
+      listeners: [
+        BlocListener(
+          cubit: _sessionBloc,
+          listener: _afterCheckSession,
+        )
+      ],
+      child: Scaffold(
+        body: GestureDetector(
+          onHorizontalDragEnd: (dragUpdateDetails) {
+            if (dragUpdateDetails.primaryVelocity < -500) {
+              _changeType(true);
+            }
+            if (dragUpdateDetails.primaryVelocity > 500) {
+              _changeType(false);
+            }
+          },
+          onVerticalDragEnd: (dragUpdateDetails) {
+            if (dragUpdateDetails.primaryVelocity < -500) {
+              _popUp();
+            }
+          },
+          child: Parent(
+            style: ParentStyle()
+              ..linearGradient(
+                colors: _dark ? [_bg, _bg] : gradients[_selectedType],
+                begin: Alignment.bottomLeft,
+                end: Alignment.topRight,
+              )
+              ..animate(700, Curves.easeOutCirc),
+            child: SafeArea(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 25),
+                child: Column(
+                  children: [
+                    SizedBox(height: 25),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        GestureDetector(
+                          child: SvgPicture.asset('assets/icons/settings.svg', color: Colors.transparent, width: 30,),
+                          onTap: () {},
+                        ),
+                        Expanded(
+                          child: Center(
+                            child: Parent(
+                              style: ParentStyle()
+                                ..width(60)
+                                ..height(60)
+                                ..padding(all: 12)
+                                ..linearGradient(colors: !_dark ? [Colors.white, Colors.white] : gradients[_selectedType])
+                                ..borderRadius(all: 30)
+                                ..boxShadow(color: gradients[_selectedType][0], spread: -3, blur: 10, offset: Offset(0, 3)),
+                              child: LinearGradientMask(
+                                child: SvgPicture.asset(
+                                  'assets/icons/${_user.horoscope.toLowerCase()}.svg',
+                                  color: Colors.white,
+                                  width: 36,
+                                ),
+                                colors: _dark ? [Colors.white, Colors.white] : gradients[_selectedType],
                               ),
-                              colors: gradients[_selectedType],
                             ),
                           ),
                         ),
-                      ),
-                      GestureDetector(
-                        child: SvgPicture.asset('assets/icons/settings.svg', width: 30,),
-                        onTap: () {},
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 30),
-                  Text(
-                    _formattedDate,
-                    style: Theme.of(context).textTheme.subtitle1.copyWith(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
-                      shadows: aTextShadow,
+                        GestureDetector(
+                          child: SvgPicture.asset('assets/icons/settings.svg', width: 30,),
+                          onTap: () {},
+                        ),
+                      ],
                     ),
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    _formattedTime,
-                    style: Theme.of(context).textTheme.headline2.copyWith(
-                      fontSize: 80,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
-                      shadows: aTextShadow,
-                    ),
-                  ),
-                  Spacer(),
-                  SvgPicture.asset(
-                    'assets/icons/${types[_selectedType].toLowerCase()}.svg',
-                    color: Colors.white54,
-                    height: 180,
-                  ),
-                  Spacer(),
-                  Spacer(),
-                  Text(
-                    types[_selectedType],
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.subtitle1.copyWith(
+                    SizedBox(height: 30),
+                    Text(
+                      _formattedDate,
+                      style: Theme.of(context).textTheme.subtitle1.copyWith(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
                         shadows: aTextShadow,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    descriptions[_selectedType],
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyText1.copyWith(
-                      fontWeight: FontWeight.w300,
-                      color: Colors.white,
-                      shadows: aTextShadow,
+                    SizedBox(height: 10),
+                    Text(
+                      _formattedTime,
+                      style: Theme.of(context).textTheme.headline2.copyWith(
+                        fontSize: 80,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                        shadows:  aTextShadow,
+                      ),
                     ),
-                  ),
-                  Container(
-                    height: 120,
-                    child: Stack(
-                      children: [
-                        Positioned.fill(
-                          child: AnimatedOpacity(
-                            opacity: _paused ? 0 : 1,
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.easeOutCirc,
-                            child: SpinKitRipple(
-                              color: Colors.white,
-                              size: 120,
-                              controller: AnimationController(vsync: this, duration: Duration(milliseconds: 3500)),
-                            ),
-                          ),
-                        ),
-                        Positioned.fill(
-                          child: Parent(
-                            gesture: Gestures()
-                              ..onTap(() => _pause()),
-                            style: ParentStyle()
-                              ..alignment.center()
-                              ..width(55)
-                              ..height(55)
-                              ..padding(all: 15, left: _paused ? 18 : null)
-                              ..background.color(Colors.white)
-                              ..animate(400, Curves.easeOutCirc)
-                              ..borderRadius(all: 30)
-                              ..boxShadow(color: gradients[_selectedType][0], spread: -3, blur: 10, offset: Offset(0, 3)),
-                            child: LinearGradientMask(
-                              colors: gradients[_selectedType],
-                              child: SvgPicture.asset(
-                                _paused ? 'assets/icons/play.svg' : 'assets/icons/pause.svg',
-                                color: Colors.white,
-                                width: 36,
+                    Spacer(),
+                    LinearGradientMask(
+                      child: SvgPicture.asset(
+                        'assets/icons/${types[_selectedType].toLowerCase()}.svg',
+                        color: Colors.white,
+                        height: 180,
+                      ),
+                      colors: _dark ? gradients[_selectedType] : [Colors.white54, Colors.white54],
+                    ),
+                    Spacer(),
+                    Spacer(),
+                    Text(
+                      types[_selectedType],
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.subtitle1.copyWith(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                          shadows: aTextShadow,
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Text(
+                      descriptions[_selectedType],
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.bodyText1.copyWith(
+                        fontWeight: FontWeight.w300,
+                        color: Colors.white,
+                        shadows: aTextShadow,
+                      ),
+                    ),
+                    Container(
+                      height: 120,
+                      child: Stack(
+                        children: [
+                          Positioned.fill(
+                            child: AnimatedOpacity(
+                              opacity: _paused ? 0 : 1,
+                              duration: Duration(milliseconds: 500),
+                              curve: Curves.easeOutCirc,
+                              child: SpinKitRipple(
+                                color: _dark ? gradients[_selectedType][0] : Colors.white,
+                                size: 120,
+                                controller: AnimationController(vsync: this, duration: Duration(milliseconds: 3500)),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                          Positioned.fill(
+                            child: Parent(
+                              gesture: Gestures()
+                                ..onTap(() => _pause()),
+                              style: ParentStyle()
+                                ..alignment.center()
+                                ..width(55)
+                                ..height(55)
+                                ..padding(all: 16, left: _paused ? 19 : null)
+                                ..linearGradient(colors: !_dark ? [Colors.white, Colors.white] : gradients[_selectedType])
+                                ..animate(400, Curves.easeOutCirc)
+                                ..borderRadius(all: 30)
+                                ..boxShadow(color: gradients[_selectedType][0], spread: -3, blur: 10, offset: Offset(0, 3)),
+                              child: LinearGradientMask(
+                                child: SvgPicture.asset(
+                                  _paused ? 'assets/icons/play.svg' : 'assets/icons/pause.svg',
+                                  color: Colors.white,
+                                  width: 36,
+                                ),
+                                colors: _dark ? [Colors.white, Colors.white] : gradients[_selectedType],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  AnimatedContainer(
-                    transform: Matrix4.translationValues(0, _y, 0),
-                    duration: Duration(milliseconds: _animate ? 3000 : 0),
-                    curve: Curves.easeOutSine,
-                    child: SvgPicture.asset(
-                      'assets/icons/arrow-up.svg',
-                      color: Colors.white,
-                      width: 16,
+                    AnimatedContainer(
+                      transform: Matrix4.translationValues(0, _y, 0),
+                      duration: Duration(milliseconds: _animate ? 3000 : 0),
+                      curve: Curves.easeInOutCirc,
+                      child: SvgPicture.asset(
+                        'assets/icons/arrow-up.svg',
+                        color: Colors.white,
+                        width: 16,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 20),
-                ],
+                    SizedBox(height: 20),
+                  ],
+                ),
               ),
             ),
           ),
@@ -277,4 +317,22 @@ class _ListenPageState extends State<ListenPage> with TickerProviderStateMixin {
       ),
     );
   }
+
+  Future<void> _afterCheckSession(
+      BuildContext context, SessionState state) async {
+    bool isLoggedIn = false;
+    print('Loading $state');
+
+    if (state is SessionLocalLoadedState) {
+      setState(() {
+        _user = state.session.user;
+        _animate = false;
+        print('CHECKED SESSION ${_user.name}');
+        print('user2: ${state.session.user.name}');
+        // _userBloc.getUsers(_user.nik);
+      });
+
+    }
+  }
 }
+

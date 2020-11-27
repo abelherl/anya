@@ -34,23 +34,23 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
         // print('Adding: ${element["cart"]}');
         // if (nik == element["nik"]) {
         print("USER ID: ${element["id"]}");
-          users.add(
-            User(
-              id: element["id"],
-              uid: element["fields"]["Number"],
-              nik: element["fields"]["NIK"] ?? "",
-              name: element["fields"]["Name"] ?? "Unknown",
-              image: (element["fields"]["Profile Picture"] == null) ? "https://josephmaraglinobooks.com/wp-content/uploads/2018/12/profile_1107725.png" : element["fields"]["Profile Picture"][0]["url"],
-              pin: element["fields"]["Pin"].toString(),
-              search: null,
-              // search: List<String>.from(element["search"]),
-            ),
-          );
+          // users.add(
+            // User(
+            //   id: element["id"],
+            //   uid: element["fields"]["Number"],
+            //   nik: element["fields"]["NIK"] ?? "",
+            //   name: element["fields"]["Name"] ?? "Unknown",
+            //   image: (element["fields"]["Profile Picture"] == null) ? "https://josephmaraglinobooks.com/wp-content/uploads/2018/12/profile_1107725.png" : element["fields"]["Profile Picture"][0]["url"],
+            //   pin: element["fields"]["Pin"].toString(),
+            //   search: null,
+            //   // search: List<String>.from(element["search"]),
+            // ),
+          // );
         // }
       });
 
       if (nik != null) {
-        users = users.where((element) => element.nik == nik).toList();
+        // users = users.where((element) => element.nik == nik).toList();
       }
 
       return Right(users);
