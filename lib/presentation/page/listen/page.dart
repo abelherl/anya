@@ -4,6 +4,7 @@ import 'package:anya/presentation/core/app.dart';
 import 'package:anya/presentation/core/constant_styling.dart';
 import 'package:anya/presentation/page/listen/widget.dart';
 import 'package:anya/presentation/page/types/page.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:division/division.dart';
 import 'package:draggable_bottom_sheet/draggable_bottom_sheet.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,7 @@ class _ListenPageState extends State<ListenPage> with TickerProviderStateMixin {
   bool _paused = false;
   double _y = -20;
   bool _animate = true;
+  final _player = AssetsAudioPlayer();
 
   void changeType(bool increase) {
     setState(() {
@@ -33,6 +35,44 @@ class _ListenPageState extends State<ListenPage> with TickerProviderStateMixin {
       }
       _animate = false;
     });
+    _player.playlistPlayAtIndex(_selectedType);
+    if (_paused) {
+      Future.delayed(Duration(milliseconds: 500), () {
+        _player.pause();
+      });
+    }
+  }
+
+  void _pause() {
+    print("PAUSING");
+    _player.playOrPause();
+    setState(() {
+      _animate = false;
+      _paused = !_paused;
+    });
+  }
+
+  void _play() {
+    print("PLAYING");
+    _player.play();
+  }
+
+  @override
+  void initState() {
+    _player.open(
+      Playlist(
+        audios: [
+          Audio('assets/audios/${types[0].toLowerCase()}.mp3'),
+          Audio('assets/audios/${types[1].toLowerCase()}.mp3'),
+          Audio('assets/audios/${types[2].toLowerCase()}.mp3'),
+          Audio('assets/audios/${types[3].toLowerCase()}.mp3'),
+          Audio('assets/audios/${types[4].toLowerCase()}.mp3'),
+        ],
+      ),
+    );
+
+    _play();
+    super.initState();
   }
 
   @override
@@ -177,10 +217,7 @@ class _ListenPageState extends State<ListenPage> with TickerProviderStateMixin {
                         Positioned.fill(
                           child: Parent(
                             gesture: Gestures()
-                              ..onTap(() => setState(() {
-                                _animate = false;
-                                _paused = !_paused;
-                              })),
+                              ..onTap(() => _pause()),
                             style: ParentStyle()
                               ..alignment.center()
                               ..width(55)
