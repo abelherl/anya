@@ -23,12 +23,12 @@ class ListenPage extends StatefulWidget {
 
 class _ListenPageState extends State<ListenPage> with TickerProviderStateMixin {
   int _selectedType = 0;
-  bool _paused = false;
   double _y = 0;
   bool _animate = true;
   User _user = User(horoscope: 'aquarius');
   Color _bg = Colors.black;
   final _player = AssetsAudioPlayer();
+  bool _isPaused = false;
 
   SessionBloc _sessionBloc;
 
@@ -53,7 +53,7 @@ class _ListenPageState extends State<ListenPage> with TickerProviderStateMixin {
     }
 
     _player.playlistPlayAtIndex(_selectedType);
-    if (_paused) {
+    if (_isPaused) {
       Future.delayed(Duration(milliseconds: 100), () {
         _player.pause();
       });
@@ -65,7 +65,7 @@ class _ListenPageState extends State<ListenPage> with TickerProviderStateMixin {
     _player.playOrPause();
     setState(() {
       _animate = false;
-      _paused = !_paused;
+      _isPaused = !_player.isPlaying.value;
     });
   }
 
@@ -112,11 +112,20 @@ class _ListenPageState extends State<ListenPage> with TickerProviderStateMixin {
         seekBarEnabled: false,
         nextEnabled: false,
         prevEnabled: false,
+        stopEnabled: false,
       ),
+      loopMode: LoopMode.single,
       showNotification: true,
     );
 
-    Future.delayed(Duration(seconds: 1), () => _play());
+    Future.delayed(Duration(seconds: 1), () {
+      _play();
+
+      setState(() {
+        _animate = false;
+        _isPaused = !_player.isPlaying.value;
+      });
+    });
 
     super.initState();
   }
@@ -127,8 +136,13 @@ class _ListenPageState extends State<ListenPage> with TickerProviderStateMixin {
     String _formattedDate = DateFormat('EEEE, d MMM yyyy').format(DateTime.now());
     String _formattedTime = DateFormat('HH:mm').format(DateTime.now());
 
+    Future.delayed(Duration(milliseconds: 500), () => setState(() {
+      _animate = false;
+      _isPaused = !_player.isPlaying.value;
+    }));
+
     print("Y1: $_y $_animate");
-    _animate ? Future.delayed(Duration(milliseconds: 3000), () => setState(() {
+    _animate ? Future.delayed(Duration(milliseconds: 2000), () => setState(() {
       _animate = true;
       _y = (_y == -20) ? 0 : -20;
     })) : null;
@@ -261,7 +275,7 @@ class _ListenPageState extends State<ListenPage> with TickerProviderStateMixin {
                         children: [
                           Positioned.fill(
                             child: AnimatedOpacity(
-                              opacity: _paused ? 0 : 1,
+                              opacity: _isPaused ? 0 : 1,
                               duration: Duration(milliseconds: 500),
                               curve: Curves.easeOutCirc,
                               child: SpinKitRipple(
@@ -279,14 +293,14 @@ class _ListenPageState extends State<ListenPage> with TickerProviderStateMixin {
                                 ..alignment.center()
                                 ..width(55)
                                 ..height(55)
-                                ..padding(all: 16, left: _paused ? 19 : null)
+                                ..padding(all: 16, left: _isPaused ? 19 : null)
                                 ..linearGradient(colors: !_dark ? [Colors.white, Colors.white] : gradients[_selectedType])
                                 ..animate(400, Curves.easeOutCirc)
                                 ..borderRadius(all: 30)
                                 ..boxShadow(color: gradients[_selectedType][0], spread: -3, blur: 10, offset: Offset(0, 3)),
                               child: LinearGradientMask(
                                 child: SvgPicture.asset(
-                                  _paused ? 'assets/icons/play.svg' : 'assets/icons/pause.svg',
+                                  _isPaused ? 'assets/icons/play.svg' : 'assets/icons/pause.svg',
                                   color: Colors.white,
                                   width: 36,
                                 ),
