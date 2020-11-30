@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icons/settings/edit image</title>
+    <defs>
+        <path d="M12.01395,8.009025 L9.9927,5.987775 L11.4537,4.526025 L13.4742,6.546525 L12.01395,8.009025 Z M14.5527,5.503275 L14.55195,5.502525 L12.49845,3.449025 C11.9427,2.894775 10.98795,2.868525 10.46145,3.397275 L3.71445,10.144275 C3.46995,10.388025 3.31845,10.712025 3.28695,11.054775 L3.0027,14.182275 C2.9832,14.403525 3.06195,14.622525 3.21945,14.780025 C3.3612,14.921775 3.55245,14.999775 3.7497,14.999775 C3.77295,14.999775 3.79545,14.999025 3.81795,14.996775 L6.94545,14.712525 C7.28895,14.681025 7.6122,14.530275 7.85595,14.286525 L14.6037,7.538775 C15.1497,6.991275 15.12645,6.077775 14.5527,5.503275 L14.5527,5.503275 Z" id="path-1" ></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="9P-024---settings" transform="translate(-211.000000, -103.000000)">
+            <g id="edit-button" transform="translate(208.000000, 100.000000)">
+                <g id="edit-fill" transform="translate(3.000000, 3.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="🎨-Icon-Сolor" fill="#8F9BB3" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

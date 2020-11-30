@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icons/settings/logout</title>
+    <defs>
+        <filter id="filter-1">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.839216 0 0 0 0 0.231373 0 0 0 0 0.188235 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+        <path d="M7,4 C7.55,4 8,4.45 8,5 C8,5.55 7.55,6 7,6 L7,6 L6,6 L6,18 L7,18 C7.55,18 8,18.45 8,19 C8,19.55 7.55,20 7,20 L7,20 L5,20 C4.45,20 4,19.55 4,19 L4,19 L4,5 C4,4.45 4.45,4 5,4 L5,4 Z M16.6109,7.1818 C17.0619,6.8628 17.6859,6.9728 18.0039,7.4248 L18.0039,7.4248 L20.8179,11.4248 C21.0679,11.7788 21.0599,12.2538 20.7999,12.5998 L20.7999,12.5998 L17.7999,16.5998 C17.6039,16.8618 17.3029,16.9998 16.9989,16.9998 C16.7909,16.9998 16.5799,16.9348 16.3999,16.7998 C15.9579,16.4688 15.8689,15.8418 16.1999,15.4008 L16.1999,15.4008 L18.0009,12.9998 L9.9999,12.9998 C9.4479,12.9998 8.9999,12.5528 8.9999,11.9998 C8.9999,11.4468 9.4479,10.9998 9.9999,10.9998 L9.9999,10.9998 L17.9999,10.9998 C18.0299,10.9998 18.0559,11.0148 18.0859,11.0178 L18.0859,11.0178 L16.3679,8.5748 C16.0499,8.1238 16.1589,7.4998 16.6109,7.1818 Z" id="path-2"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="9P-024---settings" transform="translate(-20.000000, -538.000000)">
+            <g id="settings-menu" transform="translate(20.000000, 184.000000)">
+                <g id="list" transform="translate(0.000000, 337.000000)">
+                    <g id="icons/settings/user" transform="translate(0.000000, 17.000000)" filter="url(#filter-1)">
+                        <g>
+                            <mask id="mask-3" fill="white">
+                                <use xlink:href="#path-2"></use>
+                            </mask>
+                            <use id="🎨-Icon-Сolor" fill="#8F9BB3" xlink:href="#path-2"></use>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
