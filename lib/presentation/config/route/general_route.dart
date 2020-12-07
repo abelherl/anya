@@ -1,5 +1,6 @@
 import 'package:anya/presentation/page/listen/page.dart';
 import 'package:anya/presentation/page/login/page.dart';
+import 'package:anya/presentation/page/settings/page.dart';
 import 'package:anya/presentation/page/splash/page.dart';
 import 'package:anya/presentation/page/types/page.dart';
 import 'package:anya/presentation/page/water/page.dart';
@@ -24,25 +25,31 @@ class GeneralRouteConfig {
     SailorRoute(
       name: RouteName.water,
       builder: (context, args, params) {
-        return WaterPage()  ;
+        return WaterPage();
       },
     ),
     SailorRoute(
       name: RouteName.zodiac,
       builder: (context, args, params) {
-        return ZodiacPage()  ;
+        return ZodiacPage();
       },
     ),
     SailorRoute(
       name: RouteName.listen,
       builder: (context, args, params) {
-        return ListenPage()  ;
+        return ListenPage();
       },
     ),
     SailorRoute(
       name: RouteName.types,
       builder: (context, args, params) {
-        return TypesPage()  ;
+        return TypesPage();
+      },
+    ),
+    SailorRoute(
+      name: RouteName.settings,
+      builder: (context, args, params) {
+        return SettingsPage();
       },
     ),
   ];

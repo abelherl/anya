@@ -81,6 +81,14 @@ class _ListenPageState extends State<ListenPage> with TickerProviderStateMixin {
     }
   }
 
+  void _onSettings() {
+    App.main.router.navigate(
+      RouteName.settings,
+      transitions: [SailorTransition.slide_from_bottom, SailorTransition.fade_in],
+      transitionCurve: Curves.easeOutCirc,
+    );
+  }
+
   @override
   void dispose() {
     _player.dispose();
@@ -214,7 +222,7 @@ class _ListenPageState extends State<ListenPage> with TickerProviderStateMixin {
                         ),
                         GestureDetector(
                           child: SvgPicture.asset('assets/icons/settings.svg', width: 30,),
-                          onTap: () {},
+                          onTap: () => _onSettings(),
                         ),
                       ],
                     ),
